@@ -33,8 +33,8 @@ class Producto(models.Model):
 
 class Carrito(models.Model):
 
-    usuario = models.ForeignKey(User,on_delete=models.SET_NULL,null=True)
-    productos = models.ForeignKey("Producto", on_delete=models.SET_NULL,null=True)
+    usuario = models.OneToOneField(User,on_delete=models.CASCADE)
+    productos = models.ManyToManyField("Producto")
 
     class Meta:
         db_table = 'carrito'
@@ -44,3 +44,10 @@ class Carrito(models.Model):
     def __str__(self):
         return f"Carrito de: {self.usuario.username}"
 
+
+    def calcular_precio(self):
+        self.total = 0
+        for producto in self.productos.all():
+            self.total += producto.precio
+        return self.total
+    
