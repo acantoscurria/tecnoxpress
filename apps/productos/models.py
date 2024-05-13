@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from apps.usuarios.models import Usuario
 
 class Categoria(models.Model):
     tipo = models.CharField(max_length=100)
@@ -33,7 +33,7 @@ class Producto(models.Model):
 
 class Carrito(models.Model):
 
-    usuario = models.OneToOneField(User,on_delete=models.CASCADE)
+    usuario = models.OneToOneField(Usuario,on_delete=models.CASCADE)
     productos = models.ManyToManyField("Producto")
 
     class Meta:
@@ -42,7 +42,7 @@ class Carrito(models.Model):
         verbose_name_plural = 'Carrito'
 
     def __str__(self):
-        return f"Carrito de: {self.usuario.username}"
+        return f"Carrito de: {self.usuario.Usuarioname}"
 
 
     def calcular_precio(self):

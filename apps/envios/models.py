@@ -1,11 +1,11 @@
 from django.db import models
-from django.contrib.auth.models import User
+from apps.usuarios.models import Usuario
 from apps.productos.models import Carrito
 
 # Create your models here.
 
 class Envio(models.Model):
-    usuario = models.OneToOneField(User,on_delete=models.CASCADE)
+    usuario = models.OneToOneField(Usuario,on_delete=models.CASCADE)
     localidad = models.ForeignKey("Localidad", on_delete=models.CASCADE)
     direccion = models.CharField(max_length=150)
     descripcion = models.CharField(max_length=250,null=True, blank=True)
@@ -19,7 +19,7 @@ class Envio(models.Model):
         verbose_name_plural = 'Envíos'
 
     def __str__(self):
-        return f"{self.usuario.username} | {self.localidad.nombre}"
+        return f"{self.usuario.Usuarioname} | {self.localidad.nombre}"
     
 
 class Localidad(models.Model):

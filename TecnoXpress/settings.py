@@ -34,6 +34,7 @@ LOCAL_APPS = [
     'apps.envios',
     'apps.facturacion',
     'apps.productos',
+    'apps.usuarios',
 ]
 
 INSTALLED_APPS = [
@@ -92,7 +93,7 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME': 'django.contrib.auth.password_validation.UsuarioAttributeSimilarityValidator',
     },
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
@@ -116,6 +117,26 @@ TIME_ZONE = 'America/Argentina/Buenos_Aires'
 USE_I18N = True
 
 USE_TZ = True
+
+AUTH_USER_MODEL = "usuarios.Usuario"
+
+AUTH_PASSWORD_VALIDATORS = [
+    {
+        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
+    },
+    {
+        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
+        "OPTIONS": {
+            "min_length": 9,
+        },
+    },
+    {
+        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
+    },
+    {
+        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
+    },
+]
 
 
 # Static files (CSS, JavaScript, Images)

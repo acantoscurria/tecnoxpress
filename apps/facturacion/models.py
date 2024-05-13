@@ -1,12 +1,12 @@
 from django.db import models
-from django.contrib.auth.models import User
+from apps.usuarios.models import Usuario
 
 from apps.productos.models import Carrito
 
 # Create your models here.
 
 class Pago(models.Model):
-    usuario = models.ForeignKey(User,on_delete=models.DO_NOTHING)
+    usuario = models.ForeignKey(Usuario,on_delete=models.DO_NOTHING)
     fecha = models.DateTimeField(auto_now_add=True)
     monto = models.FloatField(default=0)
     carrito = models.OneToOneField(Carrito, on_delete=models.DO_NOTHING)
@@ -17,7 +17,7 @@ class Pago(models.Model):
         verbose_name_plural = 'Pagos'
 
     def __str__(self):
-        return f"{self.usuario.username} - {self.fecha}"
+        return f"{self.usuario.Usuarioname} - {self.fecha}"
     
 
 
