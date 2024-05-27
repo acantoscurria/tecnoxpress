@@ -8,7 +8,7 @@ class ProductoSerializer(serializers.ModelSerializer):
         read_only=True,
         slug_field='tipo'
     )
-    # imagen = serializers.ImageField()
+    imagen = serializers.ImageField()
 
     class Meta:
         model = Producto
