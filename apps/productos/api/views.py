@@ -7,6 +7,7 @@ from .serializers import (
     ProductoCategoriaSerializer
     )
 from apps.productos.models import Categoria, Producto
+from drf_spectacular.utils import extend_schema, OpenApiParameter
 
 
 class ProductoViewSet(ModelViewSet):
@@ -22,6 +23,7 @@ class ProductoViewSet(ModelViewSet):
     def retrieve(self, request, *args, **kwargs):
         self.serializer_class = ProductoCategoriaSerializer
         return super().retrieve(request, *args, **kwargs)
+
 
 class CategoriaViewSet(ModelViewSet):
     queryset = Categoria.objects.all()
