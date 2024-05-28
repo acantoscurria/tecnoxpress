@@ -13,6 +13,7 @@ class ProductoViewSet(ModelViewSet):
  
     queryset = Producto.objects.all()
     serializer_class = ProductoSerializer
+    permission_classes = [DjangoModelPermissions]
 
     def list(self, request, *args, **kwargs):
         self.serializer_class = ProductoCategoriaSerializer
@@ -24,5 +25,5 @@ class ProductoViewSet(ModelViewSet):
 
 class CategoriaViewSet(ModelViewSet):
     queryset = Categoria.objects.all()
-    # permission_classes = [DjangoModelPermissions]
+    permission_classes = [DjangoModelPermissions]
     serializer_class = CategoriaSerializer
