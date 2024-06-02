@@ -1,7 +1,7 @@
 from rest_framework import mixins
 from rest_framework.viewsets import GenericViewSet, ModelViewSet
 from rest_framework.permissions import DjangoModelPermissions
-from apps.usuarios.api.serializers import GrupoResponseSerializer, GrupoSerializer, PermisosSerializer, UsuarioCreateUpdateeSerializer, UsuarioResponseSerializer, UsuarioSerializer
+from apps.usuarios.api.serializers import GrupoResponseSerializer, GrupoSerializer, PermisosSerializer, UsuarioCreateUpdateSerializer, UsuarioResponseSerializer, UsuarioSerializer
 from apps.usuarios.models import Usuario
 from drf_spectacular.utils import extend_schema, OpenApiParameter
 from django.contrib.auth.models import Group, Permission
@@ -10,7 +10,7 @@ from django.contrib.auth.models import Group, Permission
 class UsuarioViewSet(ModelViewSet):
 
     queryset = Usuario.objects.all()
-    serializer_class = UsuarioCreateUpdateeSerializer
+    serializer_class = UsuarioCreateUpdateSerializer
     # permission_classes = [DjangoModelPermissions]
 
     def list(self, request, *args, **kwargs):

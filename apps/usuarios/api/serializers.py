@@ -38,8 +38,10 @@ class UsuarioResponseSerializer(UsuarioSerializer):
     group = GrupoSerializer(read_only=True)
 
 
-class UsuarioCreateUpdateeSerializer(UsuarioSerializer):
+class UsuarioCreateUpdateSerializer(serializers.ModelSerializer):
 
-    group = serializers.PrimaryKeyRelatedField(many=True,queryset=Group.objects.all())
+    groups = serializers.PrimaryKeyRelatedField(many=True,queryset=Group.objects.all())
 
-
+    class Meta:
+        model = Usuario
+        exclude = ["last_login","is_active","fecha_registro","date_joined","user_permissions",]
