@@ -16,8 +16,19 @@ class ProductoViewSet(ModelViewSet):
     serializer_class = ProductoSerializer
     # permission_classes = [DjangoModelPermissions]
 
+    @ extend_schema(
+        parameters=[
+            OpenApiParameter(
+                name='categoria_id', description='Buscar por categoria', required=False, type=str),
+        ],
+    )
     def list(self, request, *args, **kwargs):
         self.serializer_class = ProductoCategoriaSerializer
+
+        nombre = request.GET.get('categoria_id')
+        if nombre:
+            self.queryset = self.queryset.filter(categoria_id=nombre)
+
         return super().list(request, *args, **kwargs)
     
     def retrieve(self, request, *args, **kwargs):
